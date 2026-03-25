@@ -1,13 +1,6 @@
 
-import {
-  PhotoIcon,
-  TrashIcon,
-  PencilIcon,
-} from "@heroicons/react/24/outline";
 
-interface Props {}
-
-const ErrorPage: React.FC<Props> = () => {
+const ErrorPage: React.FC = () => {
 
   return (
   <div>
