@@ -1,16 +1,23 @@
 
-import './App.css'
-import ProductPage from './pages/ProductPage'
 
-
-function App() {
-
+const App:React.FC = () => {
   return (
-    <>
-      <h1>Welcome to my store!</h1>
-      <ProductPage message='List of products here.'/>
-    </>
-  )
-}
+    <div className="min-h-screen bg-gray-50">
+      <header className="bg-white shadow">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <h1 className="text-2xl font-bold text-gray-800">
+            Welcome to my products store!
+          </h1>
+          
+        </div>
+      </header>
 
-export default App
+      {/* Main Content */}
+      <main className="max-w-6xl mx-auto px-4 py-6">
+      
+      </main>
+    </div>
+  );
+};
+
+export default App;
