@@ -3,7 +3,7 @@ interface Props{
     message: string;
 }
 
-function ProductPage(props: Props)
+const ProductPage : React.FC<Props> = (props: Props) =>
 {
     return (
         <>
