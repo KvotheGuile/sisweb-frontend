@@ -14,7 +14,7 @@ const App:React.FC = () => {
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-6">
-      <ProductPage />
+      {/* <ProductPage /> */}
       </main>
     </div>
   );
