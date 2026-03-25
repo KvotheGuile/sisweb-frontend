@@ -1,9 +1,14 @@
 
-function ProductPage()
+interface Props{
+    message: string;
+}
+
+function ProductPage(props: Props)
 {
     return (
         <>
-            <h2>Hello World</h2>
+            <h1>Product Page</h1>
+            <h2>{props.message}</h2>
         </>
     )
 }

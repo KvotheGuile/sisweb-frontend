@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <h1>Welcome to my store!</h1>
-      <ProductPage />
+      <ProductPage message='List of products here.'/>
     </>
   )
 }
