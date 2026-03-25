@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+import Navbar from './components/navbar';
 
 const App:React.FC = () => {
   return (
@@ -9,6 +10,8 @@ const App:React.FC = () => {
             Welcome to my products store!
           </h1>
           
+          <Navbar />
+
         </div>
       </header>
 
