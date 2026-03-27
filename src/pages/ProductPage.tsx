@@ -1,12 +1,6 @@
 
-import {
-  PhotoIcon,
-  TrashIcon,
-  PencilIcon,
-} from "@heroicons/react/24/outline";
 
 import ProductRow from "../components/productRow";
-import type { ProductProp } from "../components/productRow";
 
 interface Props {}
 
@@ -84,7 +78,7 @@ const ProductPage: React.FC<Props> = () => {
                 <ProductRow id={1} title="Yu-gi-oh card" description="very fun" price={1000} disc={0} rating={10} stock={7}/>
                 <ProductRow id={2} title="Magic card" description="not that fun tbh" price={0} disc={100} rating={3} stock={200}/>
                 <ProductRow id={3} title="Pokemon card" description="ok" price={200} disc={50} rating={8} stock={153}/>
-                <ProductRow id={4} title="Yu-gi-oh card" description="fun" price={1000} disc={0} rating={10} stock={7}/>
+                <ProductRow id={4} title="Single tarot card" description="why would u buy just one" price={4} disc={0} rating={6} stock={78}/>
                 
               </tbody>
 
