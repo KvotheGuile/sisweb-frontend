@@ -5,6 +5,9 @@ import {
   PencilIcon,
 } from "@heroicons/react/24/outline";
 
+import ProductRow from "../components/productRow";
+import type { ProductProp } from "../components/productRow";
+
 interface Props {}
 
 const ProductPage: React.FC<Props> = () => {
@@ -78,42 +81,11 @@ const ProductPage: React.FC<Props> = () => {
               </thead>
 
               <tbody>
-                <tr className="hover:bg-gray-50">
-                  <td className="p-2 border">1</td>
-                  <td className="p-2 border text-center">
-                    <PhotoIcon className="h-5 w-5 mx-auto text-gray-500" />
-                  </td>
-                  <td className="p-2 border">
-                    <button className="text-blue-600 hover:underline">
-                      Title
-                    </button>
-                  </td>
-                  <td className="p-2 border">Some description</td>
-                  <td className="p-2 border">12.34</td>
-                  <td className="p-2 border">3.4</td>
-                  <td className="p-2 border">5</td>
-                  <td className="p-2 border">36</td>
-
-                  {/* Edit */}
-                  <td className="p-2 border text-center">
-                    <button
-                      onClick={() => window.confirm("Save the changes?")}
-                      className="text-blue-500 hover:text-blue-700"
-                    >
-                      <PencilIcon className="h-5 w-5" />
-                    </button>
-                  </td>
-
-                  {/* Delete */}
-                  <td className="p-2 border text-center">
-                    <button
-                      onClick={() => window.confirm("Delete the product?")}
-                      className="text-red-500 hover:text-red-700"
-                    >
-                      <TrashIcon className="h-5 w-5" />
-                    </button>
-                  </td>
-                </tr>
+                <ProductRow id={1} title="Yu-gi-oh card" description="very fun" price={1000} disc={0} rating={10} stock={7}/>
+                <ProductRow id={2} title="Magic card" description="not that fun tbh" price={0} disc={100} rating={3} stock={200}/>
+                <ProductRow id={3} title="Pokemon card" description="ok" price={200} disc={50} rating={8} stock={153}/>
+                <ProductRow id={4} title="Yu-gi-oh card" description="fun" price={1000} disc={0} rating={10} stock={7}/>
+                
               </tbody>
 
               <tfoot className="bg-gray-100">
