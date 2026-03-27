@@ -1,6 +1,7 @@
 
 
 import ProductRow from "../components/productRow";
+import ProductTableHeader from "../components/productTableHeader";
 
 interface Props {}
 
@@ -60,41 +61,19 @@ const ProductPage: React.FC<Props> = () => {
           <div className="overflow-x-auto">
             <table className="min-w-full border border-gray-200">
               <thead className="bg-gray-100">
-                <tr>
-                  <th className="p-2 border">#</th>
-                  <th className="p-2 border">Image</th>
-                  <th className="p-2 border">Title</th>
-                  <th className="p-2 border">Description</th>
-                  <th className="p-2 border">Price</th>
-                  <th className="p-2 border">Disc.%</th>
-                  <th className="p-2 border">Rating</th>
-                  <th className="p-2 border">Stock</th>
-                  <th className="p-2 border">Modify</th>
-                  <th className="p-2 border">Delete</th>
-                </tr>
+                <ProductTableHeader />
               </thead>
 
               <tbody>
-                <ProductRow id={1} title="Yu-gi-oh card" description="very fun" price={1000} disc={0} rating={10} stock={7}/>
-                <ProductRow id={2} title="Magic card" description="not that fun tbh" price={0} disc={100} rating={3} stock={200}/>
-                <ProductRow id={3} title="Pokemon card" description="ok" price={200} disc={50} rating={8} stock={153}/>
-                <ProductRow id={4} title="Single tarot card" description="why would u buy just one" price={4} disc={0} rating={6} stock={78}/>
+                <ProductRow id={1} title="Yu-gi-oh card" description="very fun" price={1000} disc={0} rating={10} stock={7} />
+                <ProductRow id={2} title="Magic card" description="not that fun tbh" price={0} disc={100} rating={3} stock={200} />
+                <ProductRow id={3} title="Pokemon card" description="ok" price={200} disc={50} rating={8} stock={153} />
+                <ProductRow id={4} title="Single tarot card" description="why would u buy just one" price={4} disc={0} rating={6} stock={78} />
                 
               </tbody>
 
               <tfoot className="bg-gray-100">
-                <tr>
-                  <th className="p-2 border">#</th>
-                  <th className="p-2 border">Image</th>
-                  <th className="p-2 border">Title</th>
-                  <th className="p-2 border">Description</th>
-                  <th className="p-2 border">Price</th>
-                  <th className="p-2 border">Disc.%</th>
-                  <th className="p-2 border">Rating</th>
-                  <th className="p-2 border">Stock</th>
-                  <th className="p-2 border">Modify</th>
-                  <th className="p-2 border">Delete</th>
-                </tr>
+                <ProductTableHeader />
               </tfoot>
             </table>
           </div>
