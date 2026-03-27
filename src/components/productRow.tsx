@@ -31,7 +31,7 @@ const ProductRow: React.FC<ProductProp> = ({id, title, description, price, disc,
                 <td className="p-2 border">{description}</td>
                 <td className="p-2 border text-right">{price}</td>
                 <td className="p-2 border text-center">{disc}</td>
-                <td className="p-2 border text-center">{rating}</td>
+                <td className="p-2 border text-center">{rating}/10</td>
                 <td className="p-2 border text-center">{stock}</td>
 
                 {/* Edit */}
