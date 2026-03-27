@@ -10,7 +10,7 @@ const LandingPage: React.FC = () => {
         </div>
 
         <div className="border-b p-4">
-            <p>Nothing here lol</p>
+            <p>Nothing here</p>
         </div>
 
       </nav>
