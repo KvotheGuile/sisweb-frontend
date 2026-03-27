@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
+import LandingPage from '../pages/LandingPage';
 import ProductPage from '../pages/ProductPage';
 import ErrorPage from '../pages/ErrorPage';
 
@@ -9,6 +10,7 @@ const router = createBrowserRouter([
         element: <App />,
         errorElement: <ErrorPage />,
         children: [
+            { path: 'start', element: <LandingPage /> },
             { path: 'products', element: <ProductPage /> },
         ]
     },

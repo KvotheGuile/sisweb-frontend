@@ -7,7 +7,7 @@ const Navbar = () =>
             className="flex flex-wrap items-center gap-1 sm:gap-2"
             aria-label="Principal"
           >
-            <NavLink to="/" end>
+            <NavLink to="/start" end>
               Inicio
             </NavLink>
             <NavLink to="/products">
