@@ -3,13 +3,10 @@
 import {
   PhotoIcon,
   TrashIcon,
-  PencilIcon,
-  ShoppingCartIcon,
+  PencilIcon
 } from "@heroicons/react/24/outline";
 
-import ProductRow from "../components/productRow";
 import ProductTableHeader from "../components/productTableHeader";
-import ProductFilter from "../components/productFilter";
 import { useEffect, useState, useMemo } from "react";
 import type { Product } from "my-types";
 import { getAllProducts } from "../api/productapi";
