@@ -13,6 +13,9 @@ const Navbar = () =>
             <NavLink to="/products">
               Productos
             </NavLink>
+            <NavLink to="/login">
+              Log In
+            </NavLink>
           </nav>
     )
 }

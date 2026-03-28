@@ -6,7 +6,7 @@ import Popup from "../components/popup";
 
 const LandingPage: React.FC = () => {
 
-    const timeOutTime: number = 5;
+    const timeOutTime: number = 30;
     const [popupOn, setPopupOn] = useState<boolean>(true);
 
     const popupClick = () => {
@@ -17,7 +17,7 @@ const LandingPage: React.FC = () => {
 
     const popupDisplay = () => {
         if (popupOn) 
-            return ( <Popup title='TIME OUT' content='Click here to get access to 5 seconds more' onClose={popupClick} /> )
+            return ( <Popup title='TIME OUT' content='Click here to get access to 30 seconds more' onClose={popupClick} /> )
         else 
             return ( <></>)
     }
