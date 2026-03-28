@@ -10,7 +10,7 @@ interface ApiResponse<T> {
 export const getAllProducts = async (): Promise<Product[]> => {
   try {
     const res = await api.get<ApiResponse<Product[]>>("/product");
-
+    console.log(res.data.payload);
     return res.data.payload;
   } catch (error) {
     const err = error as AxiosError;

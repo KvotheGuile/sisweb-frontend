@@ -1,7 +1,4 @@
 
-// Redux
-// Zendusk
-
 import {
   PhotoIcon,
   TrashIcon,
