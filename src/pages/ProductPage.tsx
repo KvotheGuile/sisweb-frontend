@@ -1,9 +1,16 @@
 
 
+import {
+  PhotoIcon,
+  TrashIcon,
+  PencilIcon,
+  ShoppingCartIcon,
+} from "@heroicons/react/24/outline";
+
 import ProductRow from "../components/productRow";
 import ProductTableHeader from "../components/productTableHeader";
 import ProductFilter from "../components/productFilter";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import type { Product } from "my-types";
 import { getAllProducts } from "../api/productapi";
 
@@ -36,6 +43,27 @@ const ProductPage: React.FC<Props> = () => {
 
   // States
   const [products, setProducts] = useState<Product[]>([]);
+  
+  const [titleQuery, setTitleQuery] = useState("");
+  const [descriptionQuery, setDescriptionQuery] = useState("");
+
+  const filteredProducts = useMemo(() => {
+      const _title = titleQuery.trim().toLowerCase();
+      const _description = descriptionQuery.trim().toLowerCase();
+
+      return products.filter((p) => {
+        const matchesTitle =
+          _title.length === 0 ||
+          p.title.toLowerCase().includes(_title);
+
+        const matchesDescription =
+          _description.length === 0 ||
+          p.description.toLowerCase().includes(_description);
+
+        return matchesTitle && matchesDescription;
+      });
+    }, [descriptionQuery, titleQuery, products]);
+
   
   // Behaviour
   useEffect( () => {
@@ -71,14 +99,85 @@ const ProductPage: React.FC<Props> = () => {
               <thead className="bg-gray-100">
                 <ProductTableHeader />
               </thead>
+                <tbody className="divide-y divide-gray-200">
+                {products.length === 0 ? (
+                  <tr>
+                    <td
+                      className="px-3 py-6 text-center text-sm text-gray-500"
+                      colSpan={10}
+                    >
+                      No products found.
+                    </td>
+                  </tr>
+                ) : (
+                  products.map((product, index) => (
+                    <tr key={product.id} className="hover:bg-gray-50">
+                      <td className="px-3 py-3 font-medium text-gray-900">
+                        {index + 1}
+                      </td>
 
-              <tbody>
-                <ProductRow id={1} title="Yu-gi-oh card" description="very fun" price={1000} disc={0} rating={10} stock={7} />
-                <ProductRow id={2} title="Magic card" description="not that fun tbh" price={0} disc={100} rating={3} stock={200} />
-                <ProductRow id={3} title="Pokemon card" description="ok" price={200} disc={50} rating={8} stock={153} />
-                <ProductRow id={4} title="Single tarot card" description="why would u buy just one" price={4} disc={0} rating={6} stock={78} />
-                
-              </tbody>
+                      <td className="px-3 py-3 text-center text-gray-700">
+                        <PhotoIcon
+                          className="mx-auto h-4 w-4 text-gray-400"
+                        />
+                      </td>
+
+                      <td className="px-3 py-3">
+                        <button className="text-blue-600 hover:underline text-sm font-medium">
+                          {product.title}
+                        </button>
+                      </td>
+
+                      <td className="px-3 py-3 text-sm text-gray-600">
+                        {product.description}
+                      </td>
+
+                      <td className="px-3 py-3 text-gray-700">
+                        {product.price.toFixed(2)}
+                      </td>
+                      <td className="px-3 py-3 text-gray-700">
+                        {product.discountPercentage.toFixed(1)}
+                        %
+                      </td>
+                      <td className="px-3 py-3 text-gray-700">
+                        {product.rating}
+                      </td>
+                      <td className="px-3 py-3 text-gray-700">
+                        {product.stock}
+                      </td>
+
+                      {/* Edit */}
+                      <td className="px-3 py-3 text-center">
+                        <button
+                          onClick={() =>
+                            window.confirm(
+                              `Save the changes for "${product.title}"?`,
+                            )
+                          }
+                          className="text-blue-600 hover:text-blue-800"
+                        >
+                          <PencilIcon className="h-4 w-4" />
+                        </button>
+                      </td>
+
+                      {/* Delete */}
+                      <td className="px-3 py-3 text-center">
+                        <button
+                          onClick={() =>
+                            window.confirm(
+                              `Delete the product "${product.title}"?`,
+                            )
+                          }
+                          className="text-red-600 hover:text-red-800"
+                        >
+                          <TrashIcon className="h-4 w-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+                </tbody>
+
 
               <tfoot className="bg-gray-100">
                 <ProductTableHeader />
