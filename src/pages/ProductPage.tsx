@@ -87,8 +87,56 @@ const ProductPage: React.FC<Props> = () => {
           <p className="text-lg font-semibold">All Products</p>
         </div>
 
+        
         {/* Filter */}
-        <ProductFilter />
+        <div className="px-4 py-4 space-y-3">
+          <h2 className="text-sm font-semibold text-gray-900">Filter</h2>
+
+          <div className="flex flex-wrap gap-3 items-end">
+
+            <div>
+              <label className="block text-xs font-medium text-gray-600">
+                Title
+              </label>
+              <input
+                className="mt-1 w-40 rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                type="text"
+                placeholder="Title"
+                value={titleQuery}
+                onChange={(e) => setTitleQuery(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-gray-600">
+                Description
+              </label>
+              <input
+                className="mt-1 w-40 rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                type="text"
+                placeholder="Description"
+                value={descriptionQuery}
+                onChange={(e) => setDescriptionQuery(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-gray-600">
+                Category
+              </label>
+              <select className="mt-1 w-40 rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+                <option>Category 1</option>
+                <option>Category 2</option>
+              </select>
+            </div>
+
+            <div>
+            </div>
+
+          </div>
+        </div>
+
+
 
         {/* Results */}
         <div className="p-4">
@@ -100,7 +148,7 @@ const ProductPage: React.FC<Props> = () => {
                 <ProductTableHeader />
               </thead>
                 <tbody className="divide-y divide-gray-200">
-                {products.length === 0 ? (
+                {filteredProducts.length === 0 ? (
                   <tr>
                     <td
                       className="px-3 py-6 text-center text-sm text-gray-500"
@@ -110,7 +158,7 @@ const ProductPage: React.FC<Props> = () => {
                     </td>
                   </tr>
                 ) : (
-                  products.map((product, index) => (
+                  filteredProducts.map((product, index) => (
                     <tr key={product.id} className="hover:bg-gray-50">
                       <td className="px-3 py-3 font-medium text-gray-900">
                         {index + 1}
