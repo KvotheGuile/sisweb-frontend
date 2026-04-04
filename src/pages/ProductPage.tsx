@@ -8,8 +8,9 @@ import {
 
 import ProductTableHeader from "../components/productTableHeader";
 import { useEffect, useState, useMemo } from "react";
-import type { Product } from "my-types";
+import type { Category, Product } from "my-types";
 import { getAllProducts } from "../api/productapi";
+import { getAllCategories } from "../api/categoryapi";
 
 
 
@@ -18,15 +19,21 @@ interface Props {}
 
 const ProductPage: React.FC<Props> = () => {
 
+  // Extra vars
+  const neutralCategory = "[ select category ]";
+
   // States
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   
   const [titleQuery, setTitleQuery] = useState("");
   const [descriptionQuery, setDescriptionQuery] = useState("");
+  const [categoryQuery, setCategoryQuery] = useState("");
 
   const filteredProducts = useMemo(() => {
       const _title = titleQuery.trim().toLowerCase();
       const _description = descriptionQuery.trim().toLowerCase();
+      const _category = categoryQuery.trim().toLowerCase();
 
       return products.filter((p) => {
         const matchesTitle =
@@ -37,16 +44,28 @@ const ProductPage: React.FC<Props> = () => {
           _description.length === 0 ||
           p.description.toLowerCase().includes(_description);
 
-        return matchesTitle && matchesDescription;
+        const matchesCategory = 
+          _category.length === 0 ||
+          _category === neutralCategory ||
+          p.category.title.toLowerCase() == _category;
+        
+        //console.log(`MATCH [${matchesCategory ? 'TRUE' : 'FALSE'}], Product ${p.title}, Category: ${p.category.title.toLowerCase()}, Looking for ${_category}`);
+        return matchesTitle && matchesDescription && matchesCategory;
       });
-    }, [descriptionQuery, titleQuery, products]);
+    }, [descriptionQuery, titleQuery, categoryQuery, products, categories]);
 
   
   // Behaviour
   useEffect( () => {
     getAllProducts().then((_products: Product[]) => {
       setProducts(_products)
-    })
+    });
+
+    getAllCategories().then(
+      (_categories: Category[]) => {
+        setCategories(_categories)
+    });
+
   }, []) 
 
   // Behaviour test 
@@ -101,9 +120,20 @@ const ProductPage: React.FC<Props> = () => {
               <label className="block text-xs font-medium text-gray-600">
                 Category
               </label>
-              <select className="mt-1 w-40 rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
-                <option>Category 1</option>
-                <option>Category 2</option>
+              <select className="mt-1 w-40 rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm 
+              text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20
+              "
+              defaultValue={neutralCategory}
+              onChange={e => {setCategoryQuery(e.target.value)}}
+              >
+                <option className="text-gray-500">{neutralCategory}</option>
+                {categories.length === 0 ? 
+                ( <option>None</option> )
+                : ( 
+                  categories.map(category => (
+                    <option>{category.title}</option>
+                  ))
+                )}
               </select>
             </div>
 
