@@ -2,7 +2,7 @@
 declare module "my-types" {
   export interface Category {
     id: number;
-    name: string;
+    title: string;
   }
 
   export interface Product {
