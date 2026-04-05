@@ -9,8 +9,11 @@ import {
 import ProductTableHeader from "../components/productTableHeader";
 import { useEffect, useState, useMemo } from "react";
 import type { Category, Product } from "my-types";
-import { getAllProducts } from "../api/productapi";
+import { getAllProducts, deleteProduct } from "../api/productapi";
 import { getAllCategories } from "../api/categoryapi";
+
+import DeleteConfirmModal from "../components/DeleteConfirmModal";
+
 
 
 
