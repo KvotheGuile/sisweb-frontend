@@ -50,7 +50,7 @@ const ProductDetailModal: React.FC<Props> = ({ product, onClose, onEdit }) => {
 
         {/* Body */}
         <div className="flex items-center gap-4">
-            <div className="flex-shrink-0 flex items-center justify-center h-16 w-16 rounded-lg bg-gray-100 border border-gray-200">
+            <div className="shrink-0 flex items-center justify-center h-16 w-16 rounded-lg bg-gray-100 border border-gray-200">
                 <PhotoIcon className="h-8 w-8 text-gray-400" />
             </div>
             <div>

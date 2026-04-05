@@ -19,7 +19,7 @@ const DeleteConfirmModal: React.FC<Props> = ({ product, onClose, onConfirm }) =>
         <DialogPanel className="w-full max-w-sm rounded-lg bg-white shadow-xl p-6 space-y-4">
 
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-red-100">
+            <div className="shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-red-100">
               <ExclamationTriangleIcon className="h-5 w-5 text-red-600" />
             </div>
             <div>
