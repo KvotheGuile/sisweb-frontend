@@ -33,6 +33,9 @@ const ProductPage: React.FC<Props> = () => {
   const [descriptionQuery, setDescriptionQuery] = useState("");
   const [categoryQuery, setCategoryQuery] = useState("");
 
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null);
+
+  // Filtering
   const filteredProducts = useMemo(() => {
       const _title = titleQuery.trim().toLowerCase();
       const _description = descriptionQuery.trim().toLowerCase();
@@ -69,7 +72,17 @@ const ProductPage: React.FC<Props> = () => {
         setCategories(_categories)
     });
 
-  }, []) 
+  }, [])
+  
+  const handleDelete = () => {
+    if (!productToDelete) return;
+    deleteProduct(productToDelete.id).then(() => {
+      setProducts((prev) => prev.filter((p) => p.id !== productToDelete.id));
+      setProductToDelete(null);
+    }).catch(() => {
+      console.log("Error deleting product");
+    });
+  };
 
   // Behaviour test 
   /*
@@ -81,6 +94,8 @@ const ProductPage: React.FC<Props> = () => {
   return (
     <div className="p-6">
       <nav className="bg-white shadow rounded-lg">
+
+
         {/* Header */}
         <div className="border-b p-4">
           <p className="text-lg font-semibold">All Products</p>
@@ -145,8 +160,6 @@ const ProductPage: React.FC<Props> = () => {
 
           </div>
         </div>
-
-
 
         {/* Results */}
         <div className="p-4">
@@ -220,14 +233,8 @@ const ProductPage: React.FC<Props> = () => {
 
                       {/* Delete */}
                       <td className="px-3 py-3 text-center">
-                        <button
-                          onClick={() =>
-                            window.confirm(
-                              `Delete the product "${product.title}"?`,
-                            )
-                          }
-                          className="text-red-600 hover:text-red-800"
-                        >
+                        <button onClick={() => setProductToDelete(product)}
+                          className="text-red-600 hover:text-red-800">
                           <TrashIcon className="h-4 w-4" />
                         </button>
                       </td>
@@ -243,6 +250,14 @@ const ProductPage: React.FC<Props> = () => {
             </table>
           </div>
         </div>
+
+        {/*Popups*/}
+        <DeleteConfirmModal
+          product={productToDelete}
+          onClose={() => setProductToDelete(null)}
+          onConfirm={handleDelete}
+        />
+
       </nav>
     </div>
   );
