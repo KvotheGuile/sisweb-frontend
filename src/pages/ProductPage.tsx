@@ -258,10 +258,6 @@ const ProductPage: React.FC<Props> = () => {
                 )}
                 </tbody>
 
-
-              <tfoot className="bg-gray-100">
-                <ProductTableHeader />
-              </tfoot>
             </table>
           </div>
         </div>
