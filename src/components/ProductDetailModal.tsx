@@ -72,8 +72,8 @@ const ProductDetailModal: React.FC<Props> = ({ product, onClose, onEdit }) => {
                 <Field label="Price"       value={`$${product?.price.toFixed(2)}`} />
                 <Field label="Stock"       value={String(product?.stock)} />
                 <Field label="Discount"    value={`${product?.discountPercentage.toFixed(1)}%`} />
-                <Field label="Rating"      value={`${product?.rating} / 5`} />
-                <Field label="Category ID" value={String(product?.categoryId)} />
+                <Field label="Rating"      value={`${product?.rating} / 10`} />
+                <Field label="Category ID" value={String(product?.category.id)} />
                 <Field label="Product ID"  value={String(product?.id)} />
             </div>
         </div>
