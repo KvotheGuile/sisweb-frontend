@@ -21,3 +21,15 @@ export const getAllProducts = async (): Promise<Product[]> => {
     throw err;
   }
 };
+
+// productapi.ts
+
+export const deleteProduct = async (id: number): Promise<void> => {
+  try {
+    await api.delete(`/product/${id}`);
+  } catch (error) {
+    const err = error as AxiosError;
+    console.error("Error deleting product:", err.message);
+    throw err;
+  }
+};
