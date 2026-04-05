@@ -238,8 +238,7 @@ const ProductPage: React.FC<Props> = () => {
                       {/* Edit */}
                       <td className="px-3 py-3 text-center">
                         <button
-                          onClick={() =>
-                            setProductToView(product)
+                          onClick={() => navigate(`/products/${product.id}/edit`, { state: { product } })
                           }
                           className="text-blue-600 hover:text-blue-800"
                         >
@@ -271,7 +270,10 @@ const ProductPage: React.FC<Props> = () => {
         <ProductDetailModal
           product={productToView}
           onClose={() => setProductToView(null)}
-          onEdit={() => {}}
+          onEdit={() => {
+            navigate(`/products/${productToView?.id}/edit`, { state: { product: productToView } });
+            setProductToView(null);
+          }}
         />
 
         <DeleteConfirmModal

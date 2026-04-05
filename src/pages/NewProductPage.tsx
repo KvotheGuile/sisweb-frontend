@@ -1,10 +1,11 @@
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowLeftIcon, PlusIcon } from "@heroicons/react/24/outline";
-import type { Category, NewProductInput } from "my-types";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { ArrowLeftIcon, PlusIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import type { Category, Product, NewProductInput } from "my-types";
 import { getAllCategories } from "../api/categoryapi";
-import { createProduct } from "../api/productapi";
+import { createProduct, updateProduct } from "../api/productapi";
+
 
 const inputClass = "w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20";
 
@@ -22,6 +23,11 @@ const emptyForm: NewProductInput = {
 
 const NewProductPage: React.FC = () => {
 
+    //setup
+    const { id } = useParams<{ id: string }>();
+    const location = useLocation();
+
+    const isEditing = id !== undefined;
 
     const navigate = useNavigate();
 
@@ -29,9 +35,22 @@ const NewProductPage: React.FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [form, setForm] = useState<NewProductInput>(emptyForm);
     
-    // Load categories
+    // Load categories && starting form
     useEffect(() => {
-    getAllCategories().then(setCategories);
+        getAllCategories().then(setCategories);
+
+        if (isEditing && location.state?.product) {
+            const product = location.state.product as Product;
+            setForm({
+            title: product.title,
+            description: product.description,
+            price: product.price,
+            discountPercentage: product.discountPercentage,
+            rating: product.rating,
+            stock: product.stock,
+            categoryId: product.categoryId,
+            });
+        }
     }, []);
 
     const handleChange = (field: keyof NewProductInput, value: string | number) => {
@@ -40,7 +59,13 @@ const NewProductPage: React.FC = () => {
 
     const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
-    createProduct(form).then(() => navigate("/products"));
+
+        if (isEditing) {
+            updateProduct(Number(id), form).then(() => navigate("/products"));
+        } else {
+            createProduct(form).then(() => navigate("/products"));
+        }
+
     };
     
     return (
@@ -56,8 +81,12 @@ const NewProductPage: React.FC = () => {
                 >
                     <ArrowLeftIcon className="h-4 w-4" />
                 </button>
-                <PlusIcon className="h-4 w-4 text-blue-700" />
-                <p className="text-sm font-semibold text-blue-900">New Product</p>
+                {isEditing ? 
+                <PencilSquareIcon className="h-4 w-4 text-blue-700" />
+                : <PlusIcon className="h-4 w-4 text-blue-700" />}
+                <p className="text-sm font-semibold text-blue-900">
+                {isEditing ? "Edit Product" : "New Product"}
+                </p>
             </div>
             {/* Form body */}
             <div className="px-6 py-6 space-y-5">
@@ -170,8 +199,12 @@ const NewProductPage: React.FC = () => {
                 className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium 
                 text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
             >
-                <PlusIcon className="h-4 w-4" />
-                Save Product
+                
+                {isEditing
+                ? <><PencilSquareIcon className="h-4 w-4" /> Save Changes</>
+                : <><PlusIcon className="h-4 w-4" /> Save Product</>
+                }
+
             </button>
             </div>
         </div>
