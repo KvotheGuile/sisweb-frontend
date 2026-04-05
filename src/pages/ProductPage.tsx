@@ -14,7 +14,6 @@ import type { Category, Product } from "my-types";
 import { getAllProducts, deleteProduct } from "../api/productapi";
 import { getAllCategories } from "../api/categoryapi";
 
-import ProductTableHeader from "../components/productTableHeader";
 import DeleteConfirmModal from "../components/DeleteConfirmModal";
 import ProductDetailModal from "../components/ProductDetailModal";
 
@@ -184,7 +183,18 @@ const ProductPage: React.FC<Props> = () => {
           <div className="overflow-x-auto">
             <table className="min-w-full border border-gray-200">
               <thead className="bg-gray-100">
-                <ProductTableHeader />
+                <tr>
+                    <th className="p-2 border">#</th>
+                    <th className="p-2 border">Image</th>
+                    <th className="p-2 border">Title</th>
+                    <th className="p-2 border">Description</th>
+                    <th className="p-2 border">Price</th>
+                    <th className="p-2 border">Disc.%</th>
+                    <th className="p-2 border">Rating</th>
+                    <th className="p-2 border">Stock</th>
+                    <th className="p-2 border">Modify</th>
+                    <th className="p-2 border">Delete</th>
+                </tr>
               </thead>
                 <tbody className="divide-y divide-gray-200">
                 {filteredProducts.length === 0 ? (
