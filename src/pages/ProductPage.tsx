@@ -28,6 +28,7 @@ const ProductPage: React.FC<Props> = () => {
 
   // Extra vars
   const neutralCategory = "[ select category ]";
+  const navigate = useNavigate();
 
   // States
   const [products, setProducts] = useState<Product[]>([]);
@@ -167,8 +168,18 @@ const ProductPage: React.FC<Props> = () => {
         </div>
 
         {/* Results */}
-        <div className="p-4">
-          <h2 className="text-md font-semibold mb-2">Results</h2>
+        <div className="p-4 space-y-3">
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="text-md font-semibold mb-2">Results</h2>
+            <button className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 
+            py-1.5 text-sm font-medium text-white shadow-sm hover:bg-blue-700 
+            focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+            onClick={() => navigate("/products/new")}
+            >
+                NEW PRODUCT
+            </button>
+          </div>
+
 
           <div className="overflow-x-auto">
             <table className="min-w-full border border-gray-200">
