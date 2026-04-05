@@ -6,12 +6,15 @@ import {
   PencilIcon
 } from "@heroicons/react/24/outline";
 
-import ProductTableHeader from "../components/productTableHeader";
+
 import { useEffect, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+
 import type { Category, Product } from "my-types";
 import { getAllProducts, deleteProduct } from "../api/productapi";
 import { getAllCategories } from "../api/categoryapi";
 
+import ProductTableHeader from "../components/productTableHeader";
 import DeleteConfirmModal from "../components/DeleteConfirmModal";
 import ProductDetailModal from "../components/ProductDetailModal";
 
