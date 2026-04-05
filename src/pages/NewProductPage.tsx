@@ -60,98 +60,100 @@ const NewProductPage: React.FC = () => {
                 <p className="text-sm font-semibold text-blue-900">New Product</p>
             </div>
             {/* Form body */}
-            <div className="p-3">
-                <label className={labelClass}>Title</label>
-                <input
-                    type="text"
-                    required
-                    className={inputClass}
-                    placeholder="Product title"
-                    value={form.title}
-                    onChange={(e) => handleChange("title", e.target.value)}
-                />
-            </div>
-
-            <div className="p-3">
-                <label className={labelClass}>Description</label>
-                <input
-                    type="text"
-                    required
-                    className={inputClass}
-                    placeholder="Description..."
-                    value={form.description}
-                    onChange={(e) => handleChange("description", e.target.value)}
-                />
-            </div>
-
-
-            <div className="grid grid-cols-2 gap-x-6 gap-y-5">
-                {/* Price */}
+            <div className="px-6 py-6 space-y-5">
                 <div className="p-3">
-                    <label className={labelClass}>Price</label>
+                    <label className={labelClass}>Title</label>
                     <input
-                    className={inputClass}
-                    type="number"
-                    min={0}
-                    step="0.01"
-                    value={form.price || ""}
-                    onChange={(e) => handleChange("price", parseFloat(e.target.value) || 0)}
-                    />    
-                </div>
-
-                {/* Stock */}
-                <div className="p-3">
-                    <label className={labelClass}>Stock</label>
-                    <input
-                    className={inputClass}
-                    type="number"
-                    min={0}
-                    step="1"
-                    value={form.stock || ""}
-                    onChange={(e) => handleChange("stock", parseFloat(e.target.value) || 0)}
-                    />    
-                </div>
-                {/* Discount */}
-                <div className="p-3">
-                    <label className={labelClass}>Discount</label>
-                    <input
-                    className={inputClass}
-                    type="number"
-                    min={0}
-                    max={100}
-                    step="1"
-                    value={form.discountPercentage || ""}
-                    onChange={(e) => handleChange("discountPercentage", parseFloat(e.target.value) || 0)}
-                    />    
-                </div>
-                {/* Rating */}
-                <div className="p-3">
-                    <label className={labelClass}>Rating</label>
-                    <input
-                    className={inputClass}
-                    type="number"
-                    min={0}
-                    max={10}
-                    step="1"
-                    value={form.rating || ""}
-                    onChange={(e) => handleChange("rating", parseFloat(e.target.value) || 0)}
-                    />    
-                </div>
-                {/* Category */}
-                <div className="col-span-2">
-                    <div className="p-3">
-                        <label className={labelClass}>Category</label>
-                        <select
+                        type="text"
                         required
-                        value={form.categoryId || ""}
-                        onChange={(e) => handleChange("categoryId", parseInt(e.target.value) || 0)}
                         className={inputClass}
-                        >
-                        <option value="">[ Select a category ]</option>
-                        {categories.map((cat) => (
-                            <option key={cat.id} value={cat.id}>{cat.title}</option>
-                        ))}
-                        </select>
+                        placeholder="Product title"
+                        value={form.title}
+                        onChange={(e) => handleChange("title", e.target.value)}
+                    />
+                </div>
+
+                <div className="p-3">
+                    <label className={labelClass}>Description</label>
+                    <input
+                        type="text"
+                        required
+                        className={inputClass}
+                        placeholder="Description..."
+                        value={form.description}
+                        onChange={(e) => handleChange("description", e.target.value)}
+                    />
+                </div>
+
+
+                <div className="grid grid-cols-2 gap-x-6 gap-y-5">
+                    {/* Price */}
+                    <div className="p-3">
+                        <label className={labelClass}>Price</label>
+                        <input
+                        className={inputClass}
+                        type="number"
+                        min={0}
+                        step="0.01"
+                        value={form.price || ""}
+                        onChange={(e) => handleChange("price", parseFloat(e.target.value) || 0)}
+                        />    
+                    </div>
+
+                    {/* Stock */}
+                    <div className="p-3">
+                        <label className={labelClass}>Stock</label>
+                        <input
+                        className={inputClass}
+                        type="number"
+                        min={0}
+                        step="1"
+                        value={form.stock || ""}
+                        onChange={(e) => handleChange("stock", parseFloat(e.target.value) || 0)}
+                        />    
+                    </div>
+                    {/* Discount */}
+                    <div className="p-3">
+                        <label className={labelClass}>Discount</label>
+                        <input
+                        className={inputClass}
+                        type="number"
+                        min={0}
+                        max={100}
+                        step="1"
+                        value={form.discountPercentage || ""}
+                        onChange={(e) => handleChange("discountPercentage", parseFloat(e.target.value) || 0)}
+                        />    
+                    </div>
+                    {/* Rating */}
+                    <div className="p-3">
+                        <label className={labelClass}>Rating</label>
+                        <input
+                        className={inputClass}
+                        type="number"
+                        min={0}
+                        max={10}
+                        step="1"
+                        value={form.rating || ""}
+                        onChange={(e) => handleChange("rating", parseFloat(e.target.value) || 0)}
+                        />    
+                    </div>
+                    {/* Category */}
+                    <div className="col-span-2">
+                        <div className="p-3">
+                            <label className={labelClass}>Category</label>
+                            <select
+                            required
+                            value={form.categoryId || ""}
+                            onChange={(e) => handleChange("categoryId", parseInt(e.target.value) || 0)}
+                            className={inputClass}
+                            >
+                            <option value="">[ Select a category ]</option>
+                            {categories.map((cat) => (
+                                <option key={cat.id} value={cat.id}>{cat.title}</option>
+                            ))}
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
