@@ -98,3 +98,5 @@ const ProductDetailModal: React.FC<Props> = ({ product, onClose, onEdit }) => {
     </Dialog>
   );
 };
+
+export default ProductDetailModal;
