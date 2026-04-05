@@ -21,7 +21,7 @@ const emptyForm: NewProductInput = {
   categoryId: 0,
 };
 
-const NewProductPage: React.FC = () => {
+const ProductFormPage: React.FC = () => {
 
     //setup
     const { id } = useParams<{ id: string }>();
@@ -213,4 +213,4 @@ const NewProductPage: React.FC = () => {
     );
 }
 
-export default NewProductPage;
+export default ProductFormPage;
