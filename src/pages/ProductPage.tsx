@@ -271,8 +271,8 @@ const ProductPage: React.FC<Props> = () => {
           product={productToView}
           onClose={() => setProductToView(null)}
           onEdit={() => {
-            if (productToView === null) return;
-            navigate(`/products/${productToView.id}/edit`, { state: { productToView } })
+            navigate(`/products/${productToView?.id}/edit`, { state: { product: productToView } });
+            setProductToView(null);
           }}
         />
 
