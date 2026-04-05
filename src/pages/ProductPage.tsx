@@ -13,6 +13,7 @@ import { getAllProducts, deleteProduct } from "../api/productapi";
 import { getAllCategories } from "../api/categoryapi";
 
 import DeleteConfirmModal from "../components/DeleteConfirmModal";
+import ProductDetailModal from "../components/ProductDetailModal";
 
 
 
@@ -34,6 +35,7 @@ const ProductPage: React.FC<Props> = () => {
   const [categoryQuery, setCategoryQuery] = useState("");
 
   const [productToDelete, setProductToDelete] = useState<Product | null>(null);
+  const [productToView, setProductToView] = useState<Product | null>(null);
 
   // Filtering
   const filteredProducts = useMemo(() => {
@@ -194,7 +196,9 @@ const ProductPage: React.FC<Props> = () => {
                       </td>
 
                       <td className="px-3 py-3">
-                        <button className="text-blue-600 hover:underline text-sm font-medium">
+                        <button 
+                          className="text-blue-600 hover:underline text-sm font-medium"
+                          onClick={() => setProductToView(product)}>
                           {product.title}
                         </button>
                       </td>
@@ -221,9 +225,7 @@ const ProductPage: React.FC<Props> = () => {
                       <td className="px-3 py-3 text-center">
                         <button
                           onClick={() =>
-                            window.confirm(
-                              `Save the changes for "${product.title}"?`,
-                            )
+                            setProductToView(product)
                           }
                           className="text-blue-600 hover:text-blue-800"
                         >
@@ -252,6 +254,12 @@ const ProductPage: React.FC<Props> = () => {
         </div>
 
         {/*Popups*/}
+        <ProductDetailModal
+          product={productToView}
+          onClose={() => setProductToView(null)}
+          onEdit={() => {}}
+        />
+
         <DeleteConfirmModal
           product={productToDelete}
           onClose={() => setProductToDelete(null)}
